@@ -4,13 +4,9 @@ mongoose.set("strictQuery", false);
 
 connectDB = async () => {
   try {
-    await mongoose
-      .connect(
-        "mongodb+srv://my-backend:JUljXavMgbYdeDwc@cluster0.cbb5lb5.mongodb.net/chennai-events?retryWrites=true&w=majority"
-      )
-      .then((data) => {
-        console.log(`Databse is connected ${data.connection.host}`);
-      });
+    await mongoose.connect(process.env.MONGO_URL).then((data) => {
+      console.log(`Databse is connected ${data.connection.host}`);
+    });
   } catch (err) {
     console.log("Error occured", err);
   }
